@@ -130,7 +130,7 @@ export default function ProfileScreen() {
     }
   }
 
-  // Render login/visitante screen
+  // Render settings for visitor (not logged in)
   if (isVisitante) {
     return (
       <YStack flex={1} backgroundColor="$background">
@@ -158,70 +158,30 @@ export default function ProfileScreen() {
 
           <YStack padding="$4" gap="$5" paddingBottom={insets.bottom + 100}>
 
-            {/* Guest Card */}
+            {/* App Settings Button */}
             <Animated.View entering={FadeInUp.duration(400)}>
-              <YStack backgroundColor="$royalBlue" borderRadius="$4" overflow="hidden">
-                <YStack height={100} position="relative" alignItems="center" justifyContent="center">
-                  <Image
-                    source="https://images.unsplash.com/photo-1504196606672-aef5c9cefcce?w=800"
-                    style={{ width: '100%', height: '100%', position: 'absolute' }}
-                    contentFit="cover"
-                  />
-                  <YStack position="absolute" top={0} left={0} right={0} bottom={0} backgroundColor="rgba(29, 53, 87, 0.6)" />
-                  
-                  <YStack alignItems="center" gap="$2" zIndex={1}>
-                    <YStack
-                      width={64}
-                      height={64}
-                      borderRadius={32}
-                      borderWidth={3}
-                      borderColor="white"
-                      overflow="hidden"
-                      backgroundColor="$surface"
-                    >
-                      <Image
-                        source="https://picsum.photos/seed/avatar_guest/200/200"
-                        style={{ width: '100%', height: '100%' }}
-                        contentFit="cover"
-                      />
-                    </YStack>
-                    <Text fontFamily="$heading" fontSize={18} fontWeight="800" color="white">
-                      Visitante
-                    </Text>
+              <XStack
+                backgroundColor="$surface"
+                borderRadius="$4"
+                borderWidth={1}
+                borderColor="$borderColor"
+                padding="$4"
+                alignItems="center"
+                justifyContent="space-between"
+                pressStyle={{ backgroundColor: '#00000008' }}
+                onPress={() => {}}
+              >
+                <XStack alignItems="center" gap="$3">
+                  <YStack width={36} height={36} borderRadius={10} backgroundColor="#1D355715" alignItems="center" justifyContent="center">
+                    <Settings size={18} color="$royalBlue" />
                   </YStack>
-                </YStack>
-
-                <YStack padding="$4" gap="$3">
-                  <Text fontSize={14} color="#ffffffcc" textAlign="center">
-                    Faça login para acessar seus ingressos, favoritos e histórico de shows
-                  </Text>
-
-                  <YStack gap="$2">
-                    <MCButton
-                      variant="outline"
-                      size="md"
-                      fullWidth
-                      icon={<User size={18} />}
-                      onPress={() => login('usuario')}
-                      color="white"
-                      borderColor="white"
-                    >
-                      Entrar como Usuário
-                    </MCButton>
-                    <MCButton
-                      variant="outline"
-                      size="md"
-                      fullWidth
-                      icon={<ArrowLeftRight size={18} />}
-                      onPress={handleLoginCirco}
-                      color="white"
-                      borderColor="white"
-                    >
-                      Entrar como Circo
-                    </MCButton>
+                  <YStack>
+                    <Text fontSize={15} fontWeight="600" color="$color">Configurações do App</Text>
+                    <Text fontSize={12} color="$textMuted">Idioma, notificações, tema</Text>
                   </YStack>
-                </YStack>
-              </YStack>
+                </XStack>
+                <ChevronRight size={16} color="$textMuted" />
+              </XStack>
             </Animated.View>
 
             {/* Version */}
