@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mundo do Circo - Visão de Vendas</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Public Sans', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Header -->
+<header class="sticky top-0 z-10 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-4 py-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<button class="flex items-center justify-center p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined text-slate-700 dark:text-slate-300">arrow_back</span>
+</button>
+<h1 class="text-xl font-bold tracking-tight uppercase">Visão de Vendas</h1>
+</div>
+<button class="p-2 rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</header>
+<main class="flex-1 p-4 pb-24 max-w-2xl mx-auto w-full space-y-6">
+<!-- Summary Cards -->
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-white dark:bg-slate-800 p-5 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700">
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">Receita Total</p>
+<p class="text-2xl font-bold mt-1">R$ 45.280</p>
+<div class="flex items-center gap-1 mt-2 text-emerald-600 dark:text-emerald-400 text-sm font-semibold">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span>12%</span>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-800 p-5 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700">
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">Ingressos</p>
+<p class="text-2xl font-bold mt-1">1.240</p>
+<div class="flex items-center gap-1 mt-2 text-emerald-600 dark:text-emerald-400 text-sm font-semibold">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span>5%</span>
+</div>
+</div>
+</div>
+<!-- Sales Chart -->
+<div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700">
+<div class="flex justify-between items-end mb-6">
+<div>
+<h3 class="text-lg font-bold">Desempenho de Vendas</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Últimos 7 dias</p>
+</div>
+<div class="text-right">
+<p class="text-2xl font-black text-primary">R$ 45k</p>
+</div>
+</div>
+<div class="flex items-end justify-between h-40 gap-2 px-2">
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-primary/20 rounded-t-lg" style="height: 50%;"></div>
+<span class="text-xs font-bold text-slate-400">Seg</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-primary/20 rounded-t-lg" style="height: 35%;"></div>
+<span class="text-xs font-bold text-slate-400">Ter</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-primary/20 rounded-t-lg" style="height: 20%;"></div>
+<span class="text-xs font-bold text-slate-400">Qua</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-primary/40 rounded-t-lg" style="height: 65%;"></div>
+<span class="text-xs font-bold text-slate-400">Qui</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-primary rounded-t-lg shadow-[0_-4px_12px_rgba(236,91,19,0.3)]" style="height: 95%;"></div>
+<span class="text-xs font-bold text-primary">Sex</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-primary/20 rounded-t-lg" style="height: 40%;"></div>
+<span class="text-xs font-bold text-slate-400">Sáb</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-primary/20 rounded-t-lg" style="height: 85%;"></div>
+<span class="text-xs font-bold text-slate-400">Dom</span>
+</div>
+</div>
+</div>
+<!-- Capacity & Detailed Stats -->
+<div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700">
+<h3 class="text-lg font-bold mb-4">Ocupação e Capacidade</h3>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between text-sm font-medium mb-2">
+<span>Taxa de Ocupação Média</span>
+<span class="text-primary">82%</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-700 h-3 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 82%;"></div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 pt-2">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-blue-50 dark:bg-blue-900/30 rounded-lg text-blue-600 dark:text-blue-400">
+<span class="material-symbols-outlined">event_seat</span>
+</div>
+<div>
+<p class="text-xs text-slate-500 dark:text-slate-400">Capacidade</p>
+<p class="text-sm font-bold">1.500 lugares</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="p-2 bg-orange-50 dark:bg-orange-900/30 rounded-lg text-orange-600 dark:text-orange-400">
+<span class="material-symbols-outlined">confirmation_number</span>
+</div>
+<div>
+<p class="text-xs text-slate-500 dark:text-slate-400">Vendidos</p>
+<p class="text-sm font-bold">1.240 tickets</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Payout Info -->
+<div class="bg-primary/5 dark:bg-primary/10 p-5 rounded-xl border border-primary/20">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="text-primary font-bold">Próximo Repasse</h3>
+<p class="text-xs text-slate-600 dark:text-slate-400">Agendado para 15/10/2023</p>
+</div>
+<span class="bg-primary text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase">Pendente</span>
+</div>
+<div class="flex items-baseline gap-1">
+<span class="text-sm font-bold text-slate-700 dark:text-slate-300">R$</span>
+<span class="text-3xl font-black text-slate-900 dark:text-slate-100">12.450,00</span>
+</div>
+<button class="w-full mt-4 py-3 bg-primary text-white font-bold rounded-lg shadow-lg shadow-primary/20 active:scale-95 transition-transform">
+                Ver Detalhes do Repasse
+            </button>
+</div>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 right-0 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 px-2 pb-6 pt-3 flex justify-around items-center z-20">
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Dashboard</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">theater_comedy</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Espetáculos</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined fill-icon">payments</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Vendas</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Ajustes</span>
+</a>
+</nav>
+</body></html>

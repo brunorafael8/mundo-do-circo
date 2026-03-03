@@ -10,6 +10,7 @@ export const MCCard = styled(YStack, {
   shadowOpacity: 1,
   shadowRadius: 8,
   elevation: 3,
+  animation: 'fast',
 
   variants: {
     variant: {
@@ -27,8 +28,7 @@ export const MCCard = styled(YStack, {
     pressable: {
       true: {
         pressStyle: {
-          scale: 0.98,
-          opacity: 0.9,
+          opacity: 0.92,
         },
         cursor: 'pointer',
       },

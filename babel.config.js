@@ -10,6 +10,7 @@ module.exports = function (api) {
           config: './tamagui.config.ts',
         },
       ],
+      'babel-plugin-transform-import-meta',
       'react-native-reanimated/plugin',
     ],
   }

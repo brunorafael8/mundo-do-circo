@@ -1,4 +1,5 @@
-import { XStack, YStack, Text, Image } from 'tamagui'
+import { XStack, YStack, Text } from 'tamagui'
+import { Image } from 'expo-image'
 import { MCCard } from '../ui/MCCard'
 import { MCBadge } from '../ui/MCBadge'
 import { formatCurrency, formatDate } from '../../utils/formatters'
@@ -22,10 +23,9 @@ export function TicketCard({ ticket, onPress }: TicketCardProps) {
     <MCCard pressable onPress={onPress} padding={0} overflow="hidden">
       <XStack>
         <Image
-          source={{ uri: ticket.imageUrl }}
-          width={100}
-          height={120}
-          resizeMode="cover"
+          source={ticket.imageUrl}
+          style={{ width: 100, height: 120 }}
+          contentFit="cover"
         />
         <YStack flex={1} padding="$3" gap="$1" justifyContent="center">
           <XStack alignItems="center" justifyContent="space-between">

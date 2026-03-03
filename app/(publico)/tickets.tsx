@@ -1,8 +1,9 @@
 import { useState, useMemo } from 'react'
-import { ScrollView } from 'react-native'
+import { FlatList } from 'react-native'
 import { YStack, XStack, Text } from 'tamagui'
 import { Ticket } from '@tamagui/lucide-icons'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import Animated, { FadeIn, FadeInUp, FadeOut } from 'react-native-reanimated'
 import { useTickets } from '../../src/features/tickets/hooks'
 import { TicketCard } from '../../src/components/publico/TicketCard'
 import { MCLoading } from '../../src/components/ui/MCLoading'
@@ -78,33 +79,45 @@ export default function TicketsScreen() {
 
       {isLoading ? (
         <MCLoading />
-      ) : filteredTickets.length === 0 ? (
-        <MCEmptyState
-          icon={<Ticket size={48} color="$textMuted" />}
-          title={
-            activeTab === 'upcoming'
-              ? 'Nenhum ingresso proximo'
-              : 'Nenhum ingresso anterior'
-          }
-          description={
-            activeTab === 'upcoming'
-              ? 'Explore os shows disponiveis e garanta seu ingresso!'
-              : 'Seus ingressos passados aparecerão aqui'
-          }
-        />
       ) : (
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={{
-            paddingHorizontal: 16,
-            paddingBottom: insets.bottom + 16,
-            gap: 12,
-          }}
+        <Animated.View
+          key={activeTab}
+          entering={FadeIn.duration(220)}
+          exiting={FadeOut.duration(150)}
+          style={{ flex: 1 }}
         >
-          {filteredTickets.map((ticket) => (
-            <TicketCard key={ticket.id} ticket={ticket} />
-          ))}
-        </ScrollView>
+          {filteredTickets.length === 0 ? (
+            <MCEmptyState
+              icon={<Ticket size={48} color="$textMuted" />}
+              title={
+                activeTab === 'upcoming'
+                  ? 'Nenhum ingresso proximo'
+                  : 'Nenhum ingresso anterior'
+              }
+              description={
+                activeTab === 'upcoming'
+                  ? 'Explore os shows disponiveis e garanta seu ingresso!'
+                  : 'Seus ingressos passados aparecerão aqui'
+              }
+            />
+          ) : (
+            <FlatList
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={{
+                paddingHorizontal: 16,
+                paddingBottom: insets.bottom + 16,
+                gap: 12,
+              }}
+              data={filteredTickets}
+              keyExtractor={(ticket) => ticket.id}
+              renderItem={({ item: ticket, index }) => (
+                <Animated.View entering={FadeInUp.duration(280).delay(index * 70)}>
+                  <TicketCard ticket={ticket} />
+                </Animated.View>
+              )}
+            />
+          )}
+        </Animated.View>
       )}
     </YStack>
   )

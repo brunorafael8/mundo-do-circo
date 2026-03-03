@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mundo do Circo - Gerenciar Espetáculos</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Public Sans', sans-serif; }
+        .ticket-cutout {
+            position: relative;
+        }
+        .ticket-cutout::before, .ticket-cutout::after {
+            content: '';
+            position: absolute;
+            left: -8px;
+            width: 16px;
+            height: 16px;
+            background-color: inherit;
+            border-radius: 50%;
+            z-index: 10;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-background-light dark:bg-background-dark border-b border-slate-200 dark:border-slate-800 p-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<button class="flex items-center justify-center p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="text-xl font-extrabold tracking-tight uppercase">Gerenciar Espetáculos</h1>
+</div>
+<button class="bg-primary/10 text-primary p-2 rounded-full">
+<span class="material-symbols-outlined">search</span>
+</button>
+</header>
+<!-- Content Area -->
+<main class="flex-1 overflow-y-auto pb-24">
+<!-- Tabs -->
+<div class="flex border-b border-slate-200 dark:border-slate-800 px-4 bg-background-light dark:bg-background-dark">
+<a class="flex-1 flex flex-col items-center justify-center border-b-4 border-primary text-primary pb-3 pt-4" href="#">
+<span class="text-sm font-bold uppercase tracking-wider">Atuais</span>
+</a>
+<a class="flex-1 flex flex-col items-center justify-center border-b-4 border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-4" href="#">
+<span class="text-sm font-bold uppercase tracking-wider">Próximos</span>
+</a>
+</div>
+<!-- Show List -->
+<div class="p-4 space-y-4">
+<!-- Ticket Item 1 -->
+<div class="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden relative group">
+<div class="flex">
+<div class="w-24 h-32 shrink-0 overflow-hidden">
+<img alt="Circus tent performance with bright lights" class="w-full h-full object-cover" data-alt="Palhaço realizando truques de mágica no palco" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJ4bX3a005jI_bj7wFArjrI5-jmBxZt23JpgV4WZ_15_OALdro6KLXsfpR-Kczv9YjeBQZXm_ycIZuwcAnSfxb25ku-UcRRkW5AHRsE1h63hNWGXAW39TLGgoCsWELmhyH6dHLLAu72VV3B9lJ_T6vhwa6G_sACI2sRBZCpNpMkpfKnn0OxvmfHm_TFgmwhhFG69TWe4RcWLbIgbOocp1lE6AGlgZIqh_HDyCMVg0-rJnyYJrTxF6R7yrorNpVo_W-atsTza0nWzgf"/>
+</div>
+<div class="flex-1 p-3 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="font-bold text-lg leading-tight">Magia do Palhaço</h3>
+<span class="bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Ativo</span>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">calendar_today</span> 15 Out, 2023 - 19:00
+                            </p>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">group</span> Capacidade: 150/200
+                            </p>
+</div>
+<div class="flex justify-end gap-2 mt-2">
+<button class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Ticket Perforation Effect -->
+<div class="absolute left-24 top-0 bottom-0 w-px border-l-2 border-dashed border-slate-200 dark:border-slate-800 opacity-50"></div>
+</div>
+<!-- Ticket Item 2 -->
+<div class="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden relative">
+<div class="flex">
+<div class="w-24 h-32 shrink-0 overflow-hidden grayscale">
+<img alt="Trapeze artists flying in the air" class="w-full h-full object-cover" data-alt="Acrobatas realizando saltos ornamentais no ar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABXeyb_KFRdHmf38BYjhPoNd8AP3wOLETlTk3JyYHXYfzPJWTEzT-71cBH1I4b65b4s4IF8fUkG1mEx382djzkDGB0DPWBcP-NUpaAeGO3-_hhcsI1ES4ye5WGxFts-ZJJ-bFnIVRGrtkkj8kjmGiEWrx3Vn7Fta7wIDLQedcSCPnH4NDTd-mrN29GfhVVsG7y46rCbSrSZZLWQWKxgpzYcK0asDYYLD16BuUmaoWBPst3indIXqsPyIBhHgZhCrRplFwprnZePLUw"/>
+</div>
+<div class="flex-1 p-3 flex flex-col justify-between opacity-80">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="font-bold text-lg leading-tight">Acrobatas do Ar</h3>
+<span class="bg-primary/10 text-primary text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Esgotado</span>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">calendar_today</span> 20 Out, 2023 - 20:30
+                            </p>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">group</span> Capacidade: 80/80
+                            </p>
+</div>
+<div class="flex justify-end gap-2 mt-2">
+<button class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-red-500">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</div>
+</div>
+</div>
+<div class="absolute left-24 top-0 bottom-0 w-px border-l-2 border-dashed border-slate-200 dark:border-slate-800 opacity-50"></div>
+</div>
+<!-- Ticket Item 3 -->
+<div class="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden relative">
+<div class="flex">
+<div class="w-24 h-32 shrink-0 overflow-hidden">
+<img alt="Fire eater performing at night" class="w-full h-full object-cover" data-alt="Artista circense engolindo fogo sob holofotes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAqxEg-LihNyqBwPQ21aA4tNX--R3dpkz3qmwIKn-tj4wZKOsqIDgrTRYbSCNYQ42tFn0cp0qUKPf-SNdc-B5mGlK3yDhFG1A6vcU5hRPMZfTVU3GnHxISBJEUt0I6nC1FNWb-JIArOKaSHZy-n5usvs_hFmX24afzfTQSuswZ31-Ax0uwy_O6KhuTWiwmeBN6jX1-jiq-UehR4yqMI1dLzPo3oNtIlVUPWd9SmktQ43gOYeugBw-hWXXHyc3twyS51kZN0_Wp91RT"/>
+</div>
+<div class="flex-1 p-3 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="font-bold text-lg leading-tight">Noite do Fogo</h3>
+<span class="bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Pendente</span>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">calendar_today</span> 22 Out, 2023 - 22:00
+                            </p>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">group</span> Capacidade: 0/150
+                            </p>
+</div>
+<div class="flex justify-end gap-2 mt-2">
+<button class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</div>
+</div>
+</div>
+<div class="absolute left-24 top-0 bottom-0 w-px border-l-2 border-dashed border-slate-200 dark:border-slate-800 opacity-50"></div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button -->
+<button class="fixed bottom-24 right-6 bg-primary text-white size-14 rounded-full shadow-lg flex items-center justify-center hover:scale-105 transition-transform active:scale-95 z-40">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 right-0 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 px-2 py-2 flex items-center justify-around z-50">
+<a class="flex flex-col items-center gap-1 p-2 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] font-medium">Dashboard</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-primary" href="#">
+<span class="material-symbols-outlined fill-[1]">confirmation_number</span>
+<span class="text-[10px] font-bold">Espetáculos</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="text-[10px] font-medium">Vendas</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-medium">Configurações</span>
+</a>
+</nav>
+</body></html>

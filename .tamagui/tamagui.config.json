@@ -25575,6 +25575,61 @@
           "16": 134,
           "true": 15
         }
+      },
+      "circus": {
+        "family": "Kavoon_400Regular",
+        "size": {
+          "1": 16,
+          "2": 18,
+          "3": 20,
+          "4": 24,
+          "5": 28,
+          "6": 34,
+          "7": 42,
+          "8": 50,
+          "9": 58,
+          "10": 66,
+          "true": 34
+        },
+        "lineHeight": {
+          "1": 20,
+          "2": 24,
+          "3": 28,
+          "4": 32,
+          "5": 36,
+          "6": 44,
+          "7": 52,
+          "8": 60,
+          "9": 68,
+          "10": 76,
+          "true": 44
+        },
+        "weight": {
+          "1": "400",
+          "2": "400",
+          "3": "400",
+          "4": "400",
+          "5": "400",
+          "6": "400",
+          "7": "400",
+          "8": "400",
+          "9": "400",
+          "10": "400",
+          "true": "400"
+        },
+        "letterSpacing": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "true": 0
+        }
       }
     },
     "onlyAllowShorthands": false,
@@ -25600,25 +25655,6 @@
       },
       "tall": {
         "minHeight": 820
-      }
-    },
-    "animations": {
-      "fast": {
-        "type": "spring",
-        "damping": 20,
-        "mass": 1.2,
-        "stiffness": 250
-      },
-      "medium": {
-        "type": "spring",
-        "damping": 15,
-        "mass": 1,
-        "stiffness": 150
-      },
-      "slow": {
-        "type": "spring",
-        "damping": 20,
-        "stiffness": 60
       }
     },
     "shouldAddPrefersColorThemes": false,
@@ -26754,6 +26790,19 @@
         "cardBackground": "#FFFFFF",
         "id": "light_yellow"
       }
+    },
+    "animations": {
+      "isReactNative": false,
+      "inputStyle": "css",
+      "outputStyle": "css",
+      "isStub": true,
+      "animations": {},
+      "useAnimations": "Function",
+      "usePresence": "Function",
+      "ResetPresence": "Function",
+      "useAnimatedNumber": "Function",
+      "useAnimatedNumberStyle": "Function",
+      "useAnimatedNumberReaction": "Function"
     },
     "defaultProps": {},
     "settings": {

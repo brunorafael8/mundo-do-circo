@@ -22,6 +22,8 @@ export interface Show {
   dates: ShowDate[]
   location: string
   city: string
+  latitude: number
+  longitude: number
   duration: number // minutes
   ageRating: string
   isFeatured: boolean

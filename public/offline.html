@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mundo do Circo - Offline</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+        font-family: system-ui, -apple-system, sans-serif;
+        background: #FFF8F0;
+        color: #1A1A2E;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 24px;
+        text-align: center;
+      }
+      .container { max-width: 360px; }
+      .icon { font-size: 64px; margin-bottom: 16px; }
+      h1 { font-size: 24px; font-weight: 800; color: #E63946; margin-bottom: 8px; }
+      p { font-size: 16px; color: #6C757D; line-height: 1.5; margin-bottom: 24px; }
+      button {
+        background: #E63946;
+        color: white;
+        border: none;
+        padding: 14px 32px;
+        border-radius: 12px;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: opacity 0.2s;
+      }
+      button:active { opacity: 0.8; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="icon">🎪</div>
+      <h1>Sem conexao</h1>
+      <p>O espetaculo precisa de internet para funcionar. Verifique sua conexao e tente novamente.</p>
+      <button onclick="location.reload()">Tentar novamente</button>
+    </div>
+  </body>
+</html>

@@ -1,64 +1,17 @@
 import { Tabs } from 'expo-router'
-import { LayoutDashboard, Clapperboard, Receipt, Settings } from '@tamagui/lucide-icons'
+import { CircoTabBar } from '../../src/components/ui/CircoTabBar'
 
 export default function CircoLayout() {
   return (
     <Tabs
-      screenOptions={{
-        headerShown: false,
-        tabBarStyle: {
-          backgroundColor: '#FFF8F0',
-          borderTopColor: '#DEE2E6',
-          borderTopWidth: 1,
-          height: 85,
-          paddingBottom: 28,
-          paddingTop: 8,
-        },
-        tabBarActiveTintColor: '#E63946',
-        tabBarInactiveTintColor: '#ADB5BD',
-        tabBarLabelStyle: {
-          fontFamily: 'Inter',
-          fontSize: 12,
-          fontWeight: '600',
-        },
-      }}
+      tabBar={(props) => <CircoTabBar {...props} />}
+      screenOptions={{ headerShown: false }}
     >
-      <Tabs.Screen
-        name="dashboard"
-        options={{
-          title: 'Dashboard',
-          tabBarIcon: ({ color, size }) => (
-            <LayoutDashboard size={size} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="(shows)"
-        options={{
-          title: 'Shows',
-          tabBarIcon: ({ color, size }) => (
-            <Clapperboard size={size} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="sales"
-        options={{
-          title: 'Vendas',
-          tabBarIcon: ({ color, size }) => (
-            <Receipt size={size} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="settings"
-        options={{
-          title: 'Config',
-          tabBarIcon: ({ color, size }) => (
-            <Settings size={size} color={color} />
-          ),
-        }}
-      />
+      <Tabs.Screen name="dashboard" />
+      <Tabs.Screen name="(shows)" />
+      <Tabs.Screen name="agenda" />
+      <Tabs.Screen name="sales" />
+      <Tabs.Screen name="settings" />
     </Tabs>
   )
 }

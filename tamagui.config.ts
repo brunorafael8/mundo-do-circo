@@ -1,4 +1,4 @@
-import { createTamagui, createTokens } from 'tamagui'
+import { createTamagui, createTokens, createFont } from 'tamagui'
 import { createInterFont } from '@tamagui/font-inter'
 import { shorthands } from '@tamagui/shorthands'
 import { themes as tamaguiThemes, tokens as defaultTokens } from '@tamagui/config/v4'
@@ -29,6 +29,44 @@ const headingFont = createInterFont({
     700: { normal: 'InterBold' },
     800: { normal: 'InterBold' },
   },
+})
+
+const circusFont = createFont({
+  family: 'Kavoon_400Regular',
+  size: {
+    1: 16,
+    2: 18,
+    3: 20,
+    4: 24,
+    5: 28,
+    6: 34,
+    7: 42,
+    8: 50,
+    9: 58,
+    10: 66,
+    true: 34,
+  },
+  lineHeight: {
+    1: 20,
+    2: 24,
+    3: 28,
+    4: 32,
+    5: 36,
+    6: 44,
+    7: 52,
+    8: 60,
+    9: 68,
+    10: 76,
+    true: 44,
+  },
+  weight: {
+    1: '400',
+    true: '400',
+  },
+  letterSpacing: {
+    1: 0,
+    true: 0,
+  }
 })
 
 const bodyFont = createInterFont({
@@ -116,31 +154,13 @@ const lightTheme = {
 
 const config = createTamagui({
   defaultFont: 'body',
-  animations: {
-    fast: {
-      type: 'spring',
-      damping: 20,
-      mass: 1.2,
-      stiffness: 250,
-    },
-    medium: {
-      type: 'spring',
-      damping: 15,
-      mass: 1,
-      stiffness: 150,
-    },
-    slow: {
-      type: 'spring',
-      damping: 20,
-      stiffness: 60,
-    },
-  },
   shouldAddPrefersColorThemes: false,
   themeClassNameOnRoot: false,
   shorthands,
   fonts: {
     heading: headingFont,
     body: bodyFont,
+    circus: circusFont,
   },
   tokens,
   themes: {
@@ -184,7 +204,7 @@ const config = createTamagui({
 export type AppConfig = typeof config
 
 declare module 'tamagui' {
-  interface TamaguiCustomConfig extends AppConfig {}
+  interface TamaguiCustomConfig extends AppConfig { }
 }
 
 export default config

@@ -1,4 +1,4 @@
-import { YStack, Text, Image } from 'tamagui'
+import { YStack, Text } from 'tamagui'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useRouter } from 'expo-router'
 import { MCButton } from '../../src/components/ui/MCButton'

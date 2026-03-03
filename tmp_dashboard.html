@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "secondary": "#1e3a8a",
+                        "accent": "#dc2626",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+<!-- Header Section -->
+<header class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+<div class="flex items-center p-4 justify-between max-w-lg mx-auto">
+<div class="flex items-center gap-3">
+<div class="bg-primary p-2 rounded-lg text-white">
+<span class="material-symbols-outlined block">rebase_edit</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-tight uppercase">PAINEL DO CIRCO</h2>
+</div>
+<button class="text-slate-600 dark:text-slate-400 p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</header>
+<main class="max-w-lg mx-auto pb-24">
+<!-- Sales Summary Section -->
+<section class="p-4">
+<div class="flex flex-wrap gap-4">
+<div class="flex min-w-[140px] flex-1 flex-col gap-2 rounded-xl p-5 bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 shadow-sm">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-xl">payments</span>
+<p class="text-slate-600 dark:text-slate-400 text-sm font-medium">Receita Total</p>
+</div>
+<p class="text-slate-900 dark:text-white tracking-tight text-2xl font-bold">R$ 15.420,00</p>
+<div class="flex items-center gap-1 text-emerald-600 dark:text-emerald-400 text-xs font-bold">
+<span class="material-symbols-outlined text-xs">trending_up</span>
+<span>+12% este mês</span>
+</div>
+</div>
+<div class="flex min-w-[140px] flex-1 flex-col gap-2 rounded-xl p-5 bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 shadow-sm">
+<div class="flex items-center gap-2 text-secondary">
+<span class="material-symbols-outlined text-xl">confirmation_number</span>
+<p class="text-slate-600 dark:text-slate-400 text-sm font-medium">Ingressos</p>
+</div>
+<p class="text-slate-900 dark:text-white tracking-tight text-2xl font-bold">840</p>
+<div class="flex items-center gap-1 text-emerald-600 dark:text-emerald-400 text-xs font-bold">
+<span class="material-symbols-outlined text-xs">trending_up</span>
+<span>+5% esta semana</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Quick Actions -->
+<section class="px-4 py-2">
+<h3 class="text-slate-900 dark:text-white text-sm font-bold uppercase tracking-wider mb-3">Ações Rápidas</h3>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white font-bold py-3 px-4 rounded-xl shadow-md transition-all">
+<span class="material-symbols-outlined">add_circle</span>
+<span>Novo Show</span>
+</button>
+<button class="flex items-center justify-center gap-2 bg-secondary hover:bg-secondary/90 text-white font-bold py-3 px-4 rounded-xl shadow-md transition-all">
+<span class="material-symbols-outlined">bar_chart</span>
+<span>Relatórios</span>
+</button>
+</div>
+</section>
+<!-- Upcoming Shows Section -->
+<section class="mt-6">
+<div class="flex items-center justify-between px-4 mb-3">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold leading-tight">Próximos Espetáculos</h3>
+<button class="text-primary text-sm font-semibold">Ver todos</button>
+</div>
+<div class="flex overflow-x-auto pb-4 px-4 gap-4 no-scrollbar">
+<!-- Card 1 -->
+<div class="flex flex-col shrink-0 w-64 bg-white dark:bg-slate-800 rounded-xl overflow-hidden border border-slate-100 dark:border-slate-700 shadow-sm">
+<div class="h-36 bg-center bg-cover relative" data-alt="Cena de um espetáculo de circo com malabaristas" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA27BGNhbgquwWOhg1mHeQ1k3mIB1vin2Lpxq2Si3cPa7C52Skkmy5sLN3YZ05LjOX7kPFhzpGmcDQgCBRTApPwYobj3bzy4MKr8x4NFUswtxWzNruQ68R8d5p77avnlHghpblCvyx5DltY9B8KD4_jIj2ObAfZWir3BQ2UjXwmc3-3Hr0_xRV8zcBE4Tiq-cAal9jX43SoNY-1wcaVhHmOmAuWsFeQgJyBqO7qGd2KZ999iCN3ZtbisBs7hAJqRige3WM0XiLV0aXh')">
+<div class="absolute top-2 right-2 bg-accent text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase">Esgotando</div>
+</div>
+<div class="p-4">
+<h4 class="text-slate-900 dark:text-white font-bold text-base mb-1">Grande Gala de Verão</h4>
+<div class="flex items-center gap-2 text-slate-500 dark:text-slate-400 text-xs mb-3">
+<span class="material-symbols-outlined text-xs">calendar_today</span>
+<span>20 Out • 20:00</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-xs font-medium text-slate-500">Ocupação: 92%</span>
+<div class="w-24 bg-slate-100 dark:bg-slate-700 h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 92%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="flex flex-col shrink-0 w-64 bg-white dark:bg-slate-800 rounded-xl overflow-hidden border border-slate-100 dark:border-slate-700 shadow-sm">
+<div class="h-36 bg-center bg-cover relative" data-alt="Palhaço sorridente no palco do circo" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBl83DAHmdjgluAQSTZ6BfjE1JEryWnvDGzDPAYhVVXTSDicfAvxFxBjDLlTEFVBmyGVKv8m9JG3toEtIzxnp4v9vHL0NX1JGJ3U3wKTGpRwICGVmZJD5B5b1srB5CY_w6nNxL5Yz1-YK2S3qfZC8Q2NgJ80KEIdnUvAmIMCp6N11SvT5Kwx3Z2MM4xDU78cpZvDyo2uJC1V2GWg6ymcDfhodTcHWGh-YpvMgkyx8IDiFZaDHVoWHbcHR_YAU4ZCWozLlq1pSB5siKc')">
+</div>
+<div class="p-4">
+<h4 class="text-slate-900 dark:text-white font-bold text-base mb-1">Riso Solto e Pipoca</h4>
+<div class="flex items-center gap-2 text-slate-500 dark:text-slate-400 text-xs mb-3">
+<span class="material-symbols-outlined text-xs">calendar_today</span>
+<span>21 Out • 18:00</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-xs font-medium text-slate-500">Ocupação: 65%</span>
+<div class="w-24 bg-slate-100 dark:bg-slate-700 h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 65%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="flex flex-col shrink-0 w-64 bg-white dark:bg-slate-800 rounded-xl overflow-hidden border border-slate-100 dark:border-slate-700 shadow-sm">
+<div class="h-36 bg-center bg-cover relative" data-alt="Iluminação cênica de um picadeiro" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAikezUhP0LeiTYgImFL0E69eoZ1FNNp-PbYtSuEQNDTu9UTtxX3y0qedYtFsL6H71tc9c0zKS3QyZrBCpgpZuc17yXHc9LXJJIG61esdwd6qviZjWFKxyMbc0-uk8gAQ59qAixwygAA51IvU0OxZm_Ovfku-wdRk6-8BSMqjNSA1tYPdH72e0oTE0qqEaB54S-HAs5PnSJjVzNNYr7YXqZnTsyiqL01TdAf86BYZlD_gXRvS9hkeJCspBuWQ5zV8J_yjQHdPECdnJ8')">
+</div>
+<div class="p-4">
+<h4 class="text-slate-900 dark:text-white font-bold text-base mb-1">Noite Iluminada</h4>
+<div class="flex items-center gap-2 text-slate-500 dark:text-slate-400 text-xs mb-3">
+<span class="material-symbols-outlined text-xs">calendar_today</span>
+<span>22 Out • 19:30</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-xs font-medium text-slate-500">Ocupação: 40%</span>
+<div class="w-24 bg-slate-100 dark:bg-slate-700 h-1.5 rounded-full overflow-hidden">
+<div class="bg-accent h-full rounded-full" style="width: 40%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Stats Graph Area Placeholder -->
+<section class="p-4">
+<div class="bg-white dark:bg-slate-800 rounded-xl p-5 border border-slate-100 dark:border-slate-700 shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-slate-900 dark:text-white font-bold">Desempenho de Vendas</h3>
+<select class="bg-slate-50 dark:bg-slate-700 border-none rounded-lg text-xs font-medium focus:ring-primary">
+<option>Últimos 7 dias</option>
+<option>Este mês</option>
+</select>
+</div>
+<div class="h-40 w-full flex items-end justify-between gap-2 px-2">
+<div class="bg-primary/20 hover:bg-primary/40 transition-colors w-full rounded-t-lg h-[30%]"></div>
+<div class="bg-primary/20 hover:bg-primary/40 transition-colors w-full rounded-t-lg h-[50%]"></div>
+<div class="bg-primary/20 hover:bg-primary/40 transition-colors w-full rounded-t-lg h-[80%]"></div>
+<div class="bg-primary/20 hover:bg-primary/40 transition-colors w-full rounded-t-lg h-[45%]"></div>
+<div class="bg-primary/20 hover:bg-primary/40 transition-colors w-full rounded-t-lg h-[95%]"></div>
+<div class="bg-primary/20 hover:bg-primary/40 transition-colors w-full rounded-t-lg h-[70%]"></div>
+<div class="bg-primary w-full rounded-t-lg h-[85%]"></div>
+</div>
+<div class="flex justify-between mt-2 text-[10px] text-slate-400 uppercase font-bold tracking-tighter">
+<span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sab</span><span>Dom</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 right-0 z-50 bg-white dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 px-2 pb-6 pt-2">
+<div class="flex max-w-lg mx-auto">
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined text-[26px]">dashboard</span>
+<p class="text-[10px] font-bold leading-normal uppercase">Dashboard</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined text-[26px]">confirmation_number</span>
+<p class="text-[10px] font-bold leading-normal uppercase">Espetáculos</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined text-[26px]">trending_up</span>
+<p class="text-[10px] font-bold leading-normal uppercase">Vendas</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined text-[26px]">settings</span>
+<p class="text-[10px] font-bold leading-normal uppercase">Ajustes</p>
+</a>
+</div>
+</nav>
+<style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</body></html>

@@ -1,4 +1,4 @@
-export type Role = 'publico' | 'circo' | 'admin'
+export type Role = 'visitante' | 'usuario' | 'circo'
 
 export interface User {
   id: string

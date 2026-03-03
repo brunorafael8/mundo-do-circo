@@ -1,120 +1,118 @@
-import { YStack, XStack, Text, Image } from 'tamagui'
-import {
-  ArrowRightLeft,
-  Bell,
-  HelpCircle,
-  Info,
-  LogOut,
-  ChevronRight,
-} from '@tamagui/lucide-icons'
+import { YStack, Text } from 'tamagui'
 import { useRouter } from 'expo-router'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { Bell, HelpCircle, Info, LogOut, LogIn, ArrowRightLeft } from '@tamagui/lucide-icons'
 import { useRoleStore } from '../../src/contexts/RoleContext'
-import { MCCard } from '../../src/components/ui/MCCard'
+import { SettingsView } from '../../src/components/shared/SettingsView'
 import { MCButton } from '../../src/components/ui/MCButton'
+import Animated, { FadeInUp } from 'react-native-reanimated'
+import { Image } from 'expo-image'
 
-const settingsItems = [
-  { id: 'notifications', label: 'Notificacoes', icon: Bell },
+const SETTINGS_ITEMS = [
+  { id: 'notifications', label: 'Notificações', icon: Bell },
   { id: 'help', label: 'Ajuda', icon: HelpCircle },
   { id: 'about', label: 'Sobre', icon: Info },
-  { id: 'logout', label: 'Sair', icon: LogOut },
 ] as const
 
 export default function ProfileScreen() {
-  const insets = useSafeAreaInsets()
   const router = useRouter()
-  const setRole = useRoleStore((s) => s.setRole)
+  const role = useRoleStore((s) => s.role)
+  const login = useRoleStore((s) => s.login)
+  const logout = useRoleStore((s) => s.logout)
 
-  function handleSwitchToCirco() {
-    setRole('circo')
+  const isVisitante = role === 'visitante'
+  const isUsuario = role === 'usuario'
+
+  function handleLoginUsuario() {
+    login('usuario')
+  }
+
+  function handleLoginCirco() {
+    login('circo')
     router.replace('/(circo)/dashboard')
   }
 
-  return (
-    <YStack
-      flex={1}
-      backgroundColor="$background"
-      paddingTop={insets.top + 8}
-      paddingHorizontal="$4"
-    >
-      <Text
-        fontFamily="$heading"
-        fontSize={24}
-        fontWeight="700"
-        marginBottom="$4"
-      >
-        Perfil
-      </Text>
+  function handleLogout() {
+    logout()
+  }
 
-      <YStack alignItems="center" gap="$3" marginBottom="$6">
-        <Image
-          source={{ uri: 'https://picsum.photos/seed/avatar/200/200' }}
-          width={80}
-          height={80}
-          borderRadius={40}
-        />
-        <YStack alignItems="center" gap={4}>
-          <Text fontFamily="$heading" fontSize={20} fontWeight="700">
-            Visitante
-          </Text>
-          <Text fontSize={14} color="$textMuted">
-            Bem-vindo ao Mundo do Circo
-          </Text>
-        </YStack>
-      </YStack>
+  // Render login buttons for visitors
+  if (isVisitante) {
+    return (
+      <YStack flex={1} backgroundColor="$background" paddingTop={52} paddingHorizontal="$4">
+        <Text fontFamily="$heading" fontSize={24} fontWeight="700" marginBottom="$4">
+          Perfil
+        </Text>
 
-      <MCButton
-        variant="outline"
-        size="md"
-        fullWidth
-        icon={<ArrowRightLeft size={18} />}
-        marginBottom="$4"
-        onPress={handleSwitchToCirco}
-      >
-        Trocar para Circo
-      </MCButton>
+        <Animated.View entering={FadeInUp.duration(400)}>
+          <YStack alignItems="center" gap="$3" marginBottom="$6">
+            <Image
+              source="https://picsum.photos/seed/avatar_guest/200/200"
+              style={{ width: 80, height: 80, borderRadius: 40 }}
+            />
+            <YStack alignItems="center" gap={4}>
+              <Text fontFamily="$heading" fontSize={20} fontWeight="700">
+                Visitante
+              </Text>
+              <Text fontSize={14} color="$textMuted">
+                Bem-vindo ao Mundo do Circo
+              </Text>
+            </YStack>
+          </YStack>
+        </Animated.View>
 
-      <YStack gap="$3">
-        {settingsItems.map((item) => {
-          const Icon = item.icon
-          return (
-            <MCCard
-              key={item.id}
-              pressable
-              padding="$3"
-              onPress={() => {}}
+        <Animated.View entering={FadeInUp.duration(400).delay(100)}>
+          <YStack gap="$3">
+            <MCButton
+              variant="outline"
+              size="md"
+              fullWidth
+              icon={<LogIn size={18} />}
+              onPress={handleLoginUsuario}
             >
-              <XStack alignItems="center" justifyContent="space-between">
-                <XStack alignItems="center" gap="$3">
-                  <XStack
-                    width={40}
-                    height={40}
-                    borderRadius={10}
-                    backgroundColor={
-                      item.id === 'logout' ? '#E6394615' : '$surfaceHover'
-                    }
-                    alignItems="center"
-                    justifyContent="center"
-                  >
-                    <Icon
-                      size={20}
-                      color={item.id === 'logout' ? '$error' : '$color'}
-                    />
-                  </XStack>
-                  <Text
-                    fontSize={16}
-                    fontWeight="500"
-                    color={item.id === 'logout' ? '$error' : '$color'}
-                  >
-                    {item.label}
-                  </Text>
-                </XStack>
-                <ChevronRight size={18} color="$textMuted" />
-              </XStack>
-            </MCCard>
-          )
-        })}
+              Entrar como Usuário
+            </MCButton>
+            <MCButton
+              variant="outline"
+              size="md"
+              fullWidth
+              icon={<ArrowRightLeft size={18} />}
+              onPress={handleLoginCirco}
+            >
+              Entrar como Circo
+            </MCButton>
+          </YStack>
+        </Animated.View>
       </YStack>
+    )
+  }
+
+  return (
+    <YStack flex={1} backgroundColor="$background">
+      {/* Header */}
+      <YStack paddingTop={52} paddingHorizontal="$4" paddingBottom="$4">
+        <Text fontFamily="$heading" fontSize={24} fontWeight="700">
+          Perfil
+        </Text>
+      </YStack>
+
+      <SettingsView
+        profileSection={{
+          title: 'Usuário Logado',
+          subtitle: 'usuario@exemplo.com',
+          imagePlaceholder: 'user',
+        }}
+        items={[
+          ...SETTINGS_ITEMS,
+          { id: 'logout', label: 'Sair', icon: LogOut, variant: 'danger' as const },
+        ]}
+        switchRoleLabel="Sair"
+        onSwitchRole={handleLogout}
+        onItemPress={(id) => {
+          if (id === 'logout') {
+            handleLogout()
+          }
+        }}
+      />
     </YStack>
   )
 }

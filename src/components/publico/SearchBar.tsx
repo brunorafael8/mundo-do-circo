@@ -14,7 +14,7 @@ export function SearchBar({
   placeholder = 'Buscar shows, circos...',
 }: SearchBarProps) {
   return (
-    <XStack alignItems="center" paddingHorizontal="$4" gap="$2">
+    <XStack alignItems="center" gap="$2">
       <XStack flex={1} position="relative">
         <MCInput
           flex={1}
@@ -22,6 +22,8 @@ export function SearchBar({
           onChangeText={onChangeText}
           placeholder={placeholder}
           paddingLeft={44}
+          borderWidth={0}
+          backgroundColor="transparent"
         />
         <XStack
           position="absolute"
@@ -32,7 +34,7 @@ export function SearchBar({
           justifyContent="center"
           pointerEvents="none"
         >
-          <Search size={18} color="$textMuted" />
+          <Search size={22} color="$brandOrange" />
         </XStack>
       </XStack>
     </XStack>

@@ -5,7 +5,8 @@ export const MCButton = styled(Button, {
   borderRadius: 14,
   fontFamily: '$body',
   fontWeight: '600',
-  pressStyle: { opacity: 0.85, scale: 0.98 },
+  pressStyle: { opacity: 0.9 },
+  animation: 'quick',
 
   variants: {
     variant: {
