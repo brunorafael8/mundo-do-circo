@@ -9,6 +9,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useShow } from '../../../../src/features/shows/hooks'
 import { MCButton } from '../../../../src/components/ui/MCButton'
 import { MCLoading } from '../../../../src/components/ui/MCLoading'
+import { MCPaymentSheet } from '../../../../src/components/publico/MCPaymentSheet'
 import { formatCurrency, formatFullDate } from '../../../../src/utils/formatters'
 
 export default function ShowDetailScreen() {
@@ -17,6 +18,7 @@ export default function ShowDetailScreen() {
   const insets = useSafeAreaInsets()
   const { data: show, isLoading } = useShow(id)
   const [selectedDateId, setSelectedDateId] = useState<string | null>(null)
+  const [paymentOpen, setPaymentOpen] = useState(false)
 
   const handleSelectDate = useCallback((dateId: string) => {
     setSelectedDateId(dateId)
@@ -195,10 +197,22 @@ export default function ShowDetailScreen() {
           fullWidth
           disabled={!selectedDateId}
           opacity={selectedDateId ? 1 : 0.5}
+          onPress={() => setPaymentOpen(true)}
         >
           COMPRAR INGRESSOS
         </MCButton>
       </YStack>
+
+      {selectedDate && (
+        <MCPaymentSheet
+          open={paymentOpen}
+          onOpenChange={setPaymentOpen}
+          showTitle={show.title}
+          date={formatFullDate(selectedDate.date)}
+          time={selectedDate.time}
+          price={show.price}
+        />
+      )}
     </YStack>
   )
 }
