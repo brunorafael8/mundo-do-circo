@@ -1,21 +1,22 @@
 import { memo, useEffect } from 'react'
 import { ScrollView, Pressable, Text as RNText } from 'react-native'
 import Animated, {
-  useSharedValue, useAnimatedStyle, withSpring, withTiming, interpolateColor,
+  useSharedValue, useAnimatedStyle, withSpring, withTiming, withRepeat,
+  withSequence, withDelay, interpolateColor, Easing,
 } from 'react-native-reanimated'
 import { YStack, Text } from 'tamagui'
 import { mockCategories } from '../../mocks/categories'
 import type { ShowCategory } from '../../features/shows/types'
 
 const CATEGORY_EMOJI: Record<ShowCategory, string> = {
-  acrobacia: '🤸',
-  palhaco: '🤡',
-  magica: '🎩',
-  aereo: '🎭',
-  musical: '🎵',
-  infantil: '🧸',
-  malabarismo: '🤹',
-  fogo: '🔥',
+  acrobacia: '\uD83E\uDD38',
+  palhaco: '\uD83E\uDD21',
+  magica: '\uD83C\uDFA9',
+  aereo: '\uD83C\uDFAD',
+  musical: '\uD83C\uDFB5',
+  infantil: '\uD83E\uDDF8',
+  malabarismo: '\uD83E\uDD39',
+  fogo: '\uD83D\uDD25',
 }
 
 interface CategoryFilterProps {
@@ -29,13 +30,27 @@ const CategoryAllItem = memo(function CategoryAllItem({
   const isSelected = !selected
   const progress = useSharedValue(isSelected ? 1 : 0)
   const scale = useSharedValue(1)
+  const wobble = useSharedValue(0)
 
   useEffect(() => {
     progress.value = withTiming(isSelected ? 1 : 0, { duration: 220 })
+    if (isSelected) {
+      wobble.value = withDelay(300, withRepeat(
+        withSequence(
+          withTiming(3, { duration: 600, easing: Easing.inOut(Easing.ease) }),
+          withTiming(-3, { duration: 600, easing: Easing.inOut(Easing.ease) }),
+          withTiming(0, { duration: 400, easing: Easing.out(Easing.ease) })
+        ),
+        -1,
+        false
+      ))
+    } else {
+      wobble.value = withTiming(0, { duration: 200 })
+    }
   }, [isSelected])
 
   const circleStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: scale.value }],
+    transform: [{ scale: scale.value }, { rotate: `${wobble.value}deg` }],
     backgroundColor: interpolateColor(progress.value, [0, 1], ['#FFFFFF', '#E63946']),
     borderColor: interpolateColor(progress.value, [0, 1], ['#1D3557', '#E63946']),
     width: 68,
@@ -55,14 +70,14 @@ const CategoryAllItem = memo(function CategoryAllItem({
     <YStack alignItems="center" gap={6} width={72}>
       <Pressable
         onPress={onSelect}
-        onPressIn={() => { scale.value = withSpring(0.88) }}
-        onPressOut={() => { scale.value = withSpring(1, { damping: 12, stiffness: 200 }) }}
+        onPressIn={() => { scale.value = withSpring(0.82, { damping: 8, stiffness: 300 }) }}
+        onPressOut={() => { scale.value = withSpring(1, { damping: 6, stiffness: 180 }) }}
       >
         <Animated.View style={circleStyle}>
-          <RNText style={{ fontSize: 28 }}>⭐</RNText>
+          <RNText style={{ fontSize: 28 }}>{'\u2B50'}</RNText>
         </Animated.View>
       </Pressable>
-      <Text fontSize={9} fontWeight="700" textTransform="uppercase" letterSpacing={1} color="$gray700">
+      <Text fontSize={9} fontWeight="700" textTransform="uppercase" letterSpacing={1} color={isSelected ? '$circusRed' : '$gray700'}>
         TODOS
       </Text>
     </YStack>
@@ -79,13 +94,27 @@ const CategoryItem = memo(function CategoryItem({
   const isSelected = selected === cat.id
   const progress = useSharedValue(isSelected ? 1 : 0)
   const scale = useSharedValue(1)
+  const wobble = useSharedValue(0)
 
   useEffect(() => {
     progress.value = withTiming(isSelected ? 1 : 0, { duration: 220 })
+    if (isSelected) {
+      wobble.value = withDelay(300, withRepeat(
+        withSequence(
+          withTiming(3, { duration: 600, easing: Easing.inOut(Easing.ease) }),
+          withTiming(-3, { duration: 600, easing: Easing.inOut(Easing.ease) }),
+          withTiming(0, { duration: 400, easing: Easing.out(Easing.ease) })
+        ),
+        -1,
+        false
+      ))
+    } else {
+      wobble.value = withTiming(0, { duration: 200 })
+    }
   }, [isSelected])
 
   const circleStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: scale.value }],
+    transform: [{ scale: scale.value }, { rotate: `${wobble.value}deg` }],
     backgroundColor: interpolateColor(progress.value, [0, 1], ['#FFFFFF', '#E63946']),
     borderColor: interpolateColor(progress.value, [0, 1], ['#1D3557', '#E63946']),
     width: 68,
@@ -105,8 +134,8 @@ const CategoryItem = memo(function CategoryItem({
     <YStack alignItems="center" gap={6} width={72}>
       <Pressable
         onPress={() => onSelect(cat.id)}
-        onPressIn={() => { scale.value = withSpring(0.88) }}
-        onPressOut={() => { scale.value = withSpring(1, { damping: 12, stiffness: 200 }) }}
+        onPressIn={() => { scale.value = withSpring(0.82, { damping: 8, stiffness: 300 }) }}
+        onPressOut={() => { scale.value = withSpring(1, { damping: 6, stiffness: 180 }) }}
       >
         <Animated.View style={circleStyle}>
           <RNText style={{ fontSize: 28 }}>
@@ -114,7 +143,7 @@ const CategoryItem = memo(function CategoryItem({
           </RNText>
         </Animated.View>
       </Pressable>
-      <Text fontSize={9} fontWeight="700" textTransform="uppercase" letterSpacing={1} color="$gray700">
+      <Text fontSize={9} fontWeight="700" textTransform="uppercase" letterSpacing={1} color={isSelected ? '$circusRed' : '$gray700'}>
         {cat.label}
       </Text>
     </YStack>

@@ -1,19 +1,80 @@
-import { useState } from 'react'
-import { ScrollView } from 'react-native'
+import { useState, useEffect } from 'react'
+import { ScrollView, View as RNView } from 'react-native'
 import { YStack, XStack, Text, View } from 'tamagui'
-import { Bell } from '@tamagui/lucide-icons'
 import { useRouter } from 'expo-router'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import Animated, { FadeIn, FadeInDown, FadeInUp, FadeOut } from 'react-native-reanimated'
+import Animated, {
+  FadeIn,
+  FadeInDown,
+  FadeInUp,
+  BounceInDown,
+  useSharedValue,
+  useAnimatedStyle,
+  withRepeat,
+  withSequence,
+  withTiming,
+  Easing,
+} from 'react-native-reanimated'
+import { LinearGradient } from 'expo-linear-gradient'
 import { useFeaturedShows, useShows } from '../../../src/features/shows/hooks'
 import { ShowCarousel } from '../../../src/components/publico/ShowCarousel'
 import { CategoryFilter } from '../../../src/components/publico/CategoryFilter'
 import { ShowCard } from '../../../src/components/publico/ShowCard'
 import { MCLoading } from '../../../src/components/ui/MCLoading'
 import { MCEmptyState } from '../../../src/components/ui/MCEmptyState'
+import { CircusDecorations } from '../../../src/components/publico/CircusDecorations'
 import { Search } from '@tamagui/lucide-icons'
 import type { ShowCategory } from '../../../src/features/shows/types'
 import { Image } from 'expo-image'
+
+function TentStripeDivider() {
+  return (
+    <XStack marginVertical="$3" marginHorizontal="$6" overflow="hidden" borderRadius={3} height={5}>
+      {Array.from({ length: 10 }).map((_, i) => (
+        <RNView key={i} style={{ flex: 1, backgroundColor: i % 2 === 0 ? '#E63946' : '#FFB800' }} />
+      ))}
+    </XStack>
+  )
+}
+
+function SectionHeader({ title }: { title: string }) {
+  return (
+    <XStack alignItems="center" gap={10} paddingHorizontal="$4" marginBottom="$3">
+      <XStack flex={1} height={2} backgroundColor="$sunshineYellow" borderRadius={1} />
+      <Text fontFamily="$circus" fontSize={18} color="$royalBlue">
+        {title}
+      </Text>
+      <XStack flex={1} height={2} backgroundColor="$sunshineYellow" borderRadius={1} />
+    </XStack>
+  )
+}
+
+function BreathingTitle() {
+  const scale = useSharedValue(1)
+
+  useEffect(() => {
+    scale.value = withRepeat(
+      withSequence(
+        withTiming(1.03, { duration: 2000, easing: Easing.inOut(Easing.ease) }),
+        withTiming(1, { duration: 2000, easing: Easing.inOut(Easing.ease) })
+      ),
+      -1,
+      true
+    )
+  }, [])
+
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: scale.value }],
+  }))
+
+  return (
+    <Animated.View style={animatedStyle}>
+      <Text fontFamily="$circus" fontSize={38} color="$color" textAlign="center" lineHeight={48}>
+        Respeitável Público!
+      </Text>
+    </Animated.View>
+  )
+}
 
 export default function HomeScreen() {
   const insets = useSafeAreaInsets()
@@ -41,7 +102,6 @@ export default function HomeScreen() {
         borderBottomWidth={1}
         borderBottomColor="$borderColor"
       >
-
         <YStack alignItems="center" justifyContent="center">
           <Image
             source={require('../../../public/images/logo.png')}
@@ -49,49 +109,34 @@ export default function HomeScreen() {
             contentFit="contain"
           />
         </YStack>
-        {/* <XStack
-          width={40}
-          height={40}
-          borderRadius={20}
-          borderWidth={2}
-          borderColor="$sunshineYellow"
-          alignItems="center"
-          justifyContent="center"
-          pressStyle={{ opacity: 0.7 }}
-        >
-          <Bell size={20} color="$royalBlue" />
-        </XStack> */}
       </XStack>
 
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Animated.View entering={FadeInDown.duration(400)}>
-          <YStack paddingHorizontal="$4" paddingVertical="$6" alignItems="center">
-            <Text fontFamily="$heading" fontStyle="italic" fontSize={18} color="$circusRed" marginBottom="$1">
-              Sejam bem-vindos!
-            </Text>
-            <Text fontFamily="$circus" fontSize={38} color="$color" textAlign="center" lineHeight={48} marginTop="$2">
-              Respeitável Público!
-            </Text>
-            <XStack width={96} height={4} borderRadius={2} backgroundColor="$circusRed" marginTop="$4" />
-          </YStack>
-        </Animated.View>
+        {/* Hero Welcome Section with floating decorations */}
+        <RNView style={{ position: 'relative', overflow: 'hidden' }}>
+          <LinearGradient
+            colors={['#FFF8F0', '#FFF0E0', '#FFEBD4', '#FFF0E0', '#FFF8F0']}
+            locations={[0, 0.25, 0.5, 0.75, 1]}
+            style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
+          />
+          <CircusDecorations />
+
+          <Animated.View entering={BounceInDown.duration(800).delay(100)}>
+            <YStack paddingHorizontal="$4" paddingTop="$6" paddingBottom="$4" alignItems="center">
+              <Text fontFamily="$heading" fontStyle="italic" fontSize={18} color="$circusRed" marginBottom="$1">
+                Sejam bem-vindos!
+              </Text>
+              <BreathingTitle />
+            </YStack>
+          </Animated.View>
+
+          <TentStripeDivider />
+        </RNView>
 
         {featuredShows && featuredShows.length > 0 ? (
-          <Animated.View entering={FadeInUp.duration(400).delay(100)}>
-            <YStack gap="$3" marginBottom="$4">
-              <Text
-                fontFamily="$heading"
-                fontSize={20}
-                fontWeight="bold"
-                color="$darkNavy"
-                paddingHorizontal="$4"
-                paddingBottom="$2"
-                borderBottomWidth={2}
-                borderBottomColor="$sunshineYellow"
-                marginHorizontal="$4"
-              >
-                Destaques
-              </Text>
+          <Animated.View entering={FadeInUp.springify().damping(14).delay(200)}>
+            <YStack gap="$3" marginBottom="$4" marginTop="$4">
+              <SectionHeader title="Destaques" />
               <ShowCarousel
                 shows={featuredShows}
                 onShowPress={(show) =>
@@ -102,38 +147,28 @@ export default function HomeScreen() {
           </Animated.View>
         ) : null}
 
-        <YStack paddingHorizontal="$4" gap="$3" paddingBottom="$4" marginTop="$6">
-          <Text
-            fontFamily="$heading"
-            fontSize={20}
-            fontWeight="bold"
-            color="$darkNavy"
-            paddingBottom="$2"
-            borderBottomWidth={2}
-            borderBottomColor="$sunshineYellow"
-          >
-            Explorar Categorias
-          </Text>
-        </YStack>
+        <TentStripeDivider />
 
-        <CategoryFilter
-          selected={selectedCategory}
-          onSelect={setSelectedCategory}
-        />
+        <Animated.View entering={FadeInUp.springify().damping(14).delay(300)}>
+          <YStack paddingBottom="$3" marginTop="$2">
+            <SectionHeader title="Explorar Categorias" />
+          </YStack>
+        </Animated.View>
 
-        <YStack paddingHorizontal="$4" gap="$3" paddingBottom="$4" marginTop="$6">
-          <Text
-            fontFamily="$heading"
-            fontSize={20}
-            fontWeight="bold"
-            color="$darkNavy"
-            paddingBottom="$2"
-            borderBottomWidth={2}
-            borderBottomColor="$sunshineYellow"
-          >
-            Mais Espetáculos
-          </Text>
-        </YStack>
+        <Animated.View entering={FadeInUp.springify().damping(14).delay(400)}>
+          <CategoryFilter
+            selected={selectedCategory}
+            onSelect={setSelectedCategory}
+          />
+        </Animated.View>
+
+        <TentStripeDivider />
+
+        <Animated.View entering={FadeInUp.springify().damping(14).delay(500)}>
+          <YStack paddingBottom="$2" marginTop="$2">
+            <SectionHeader title="Mais Espetáculos" />
+          </YStack>
+        </Animated.View>
 
         {loadingShows ? (
           <YStack padding="$6">
@@ -154,7 +189,7 @@ export default function HomeScreen() {
             {shows.map((show, index) => (
               <Animated.View
                 key={show.id + (selectedCategory ?? 'all')}
-                entering={FadeInUp.duration(300).delay(index * 60)}
+                entering={FadeInUp.springify().damping(12).delay(index * 80)}
               >
                 <ShowCard
                   show={show}
