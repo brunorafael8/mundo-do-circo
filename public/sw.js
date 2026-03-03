@@ -10,7 +10,7 @@
  * - Offline: Dedicated fallback page
  */
 
-const SW_VERSION = 'v3'
+const SW_VERSION = 'v4'
 const PRECACHE = `mc-precache-${SW_VERSION}`
 const RUNTIME_CACHE = `mc-runtime-${SW_VERSION}`
 const IMAGE_CACHE = 'mc-images-v1' // separate lifecycle — survives SW updates
