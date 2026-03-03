@@ -130,8 +130,25 @@ export default function ProfileScreen() {
     }
   }
 
-  // Render settings for visitor (not logged in)
+  const GUEST_ITEMS: MenuItem[] = [
+    { id: 'login_usuario', label: 'Entrar como Usuário', subtitle: 'Acesse seus ingressos e favoritos', icon: User, color: '$royalBlue', bgColor: '#1D355715' },
+    { id: 'login_circo', label: 'Entrar como Circo', subtitle: 'Gerencie seu circo', icon: ArrowLeftRight, color: '$circusRed', bgColor: '#E6394615' },
+  ]
+
+  const GUEST_SETTINGS_ITEMS: MenuItem[] = [
+    { id: 'settings', label: 'Configurações do App', subtitle: 'Idioma, notificações, tema', icon: Settings, color: '$textMuted', bgColor: '#ADB5BD15' },
+  ]
+
+  // Render visitor (not logged in) with new design
   if (isVisitante) {
+    const handleGuestItemPress = (item: MenuItem) => {
+      if (item.id === 'login_usuario') {
+        login('usuario')
+      } else if (item.id === 'login_circo') {
+        handleLoginCirco()
+      }
+    }
+
     return (
       <YStack flex={1} backgroundColor="$background">
         <ScrollView showsVerticalScrollIndicator={false}>
@@ -158,30 +175,38 @@ export default function ProfileScreen() {
 
           <YStack padding="$4" gap="$5" paddingBottom={insets.bottom + 100}>
 
-            {/* App Settings Button */}
+            {/* Guest Card with new design */}
             <Animated.View entering={FadeInUp.duration(400)}>
-              <XStack
-                backgroundColor="$surface"
-                borderRadius="$4"
-                borderWidth={1}
-                borderColor="$borderColor"
-                padding="$4"
-                alignItems="center"
-                justifyContent="space-between"
-                pressStyle={{ backgroundColor: '#00000008' }}
-                onPress={() => {}}
-              >
-                <XStack alignItems="center" gap="$3">
-                  <YStack width={36} height={36} borderRadius={10} backgroundColor="#1D355715" alignItems="center" justifyContent="center">
-                    <Settings size={18} color="$royalBlue" />
-                  </YStack>
-                  <YStack>
-                    <Text fontSize={15} fontWeight="600" color="$color">Configurações do App</Text>
-                    <Text fontSize={12} color="$textMuted">Idioma, notificações, tema</Text>
-                  </YStack>
-                </XStack>
-                <ChevronRight size={16} color="$textMuted" />
-              </XStack>
+              <YStack backgroundColor="$surface" borderRadius="$4" borderWidth={1} borderColor="$borderColor" overflow="hidden" padding="$4" alignItems="center" gap="$3">
+                <YStack
+                  width={64}
+                  height={64}
+                  borderRadius={32}
+                  backgroundColor="$royalBlue"
+                  alignItems="center"
+                  justifyContent="center"
+                >
+                  <User size={28} color="white" />
+                </YStack>
+                <YStack alignItems="center" gap="$1">
+                  <Text fontFamily="$heading" fontSize={18} fontWeight="700" color="$color">
+                    Visitante
+                  </Text>
+                  <Text fontSize={13} color="$textMuted" textAlign="center">
+                    Faça login para acessar suas informações
+                  </Text>
+                </YStack>
+              </YStack>
+            </Animated.View>
+
+            {/* Login Options */}
+            <Animated.View entering={FadeInUp.duration(400).delay(100)}>
+              <MenuGroup title="Entrar" items={GUEST_ITEMS} onPress={handleGuestItemPress} />
+            </Animated.View>
+
+            {/* App Settings */}
+            <Animated.View entering={FadeInUp.duration(400).delay(200)}>
+              <MenuGroup title="Configurações" items={GUEST_SETTINGS_ITEMS} onPress={() => {}} />
             </Animated.View>
 
             {/* Version */}

@@ -147,10 +147,8 @@ export default function HomeScreen() {
           </Animated.View>
         ) : null}
 
-        <TentStripeDivider />
-
         <Animated.View entering={FadeInUp.springify().damping(14).delay(300)}>
-          <YStack paddingBottom="$3" marginTop="$2">
+          <YStack paddingBottom="$3" marginTop="$4">
             <SectionHeader title="Explorar Categorias" />
           </YStack>
         </Animated.View>
@@ -162,10 +160,8 @@ export default function HomeScreen() {
           />
         </Animated.View>
 
-        <TentStripeDivider />
-
         <Animated.View entering={FadeInUp.springify().damping(14).delay(500)}>
-          <YStack paddingBottom="$2" marginTop="$2">
+          <YStack paddingBottom="$2" marginTop="$4">
             <SectionHeader title="Mais Espetáculos" />
           </YStack>
         </Animated.View>
