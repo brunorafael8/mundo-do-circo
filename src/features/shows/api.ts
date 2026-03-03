@@ -1,10 +1,10 @@
-import { mockShows } from '../../mocks/shows'
+import { allShows } from '../../mocks/circuses'
 import { delay } from '../../mocks/delay'
 import type { Show, ShowFilters } from './types'
 
 export async function fetchShows(filters?: ShowFilters): Promise<Show[]> {
   await delay()
-  let results = [...mockShows]
+  let results = [...allShows]
 
   if (filters?.category) {
     results = results.filter((s) => s.category === filters.category)
@@ -32,10 +32,10 @@ export async function fetchShows(filters?: ShowFilters): Promise<Show[]> {
 
 export async function fetchShow(id: string): Promise<Show | undefined> {
   await delay()
-  return mockShows.find((s) => s.id === id)
+  return allShows.find((s) => s.id === id)
 }
 
 export async function fetchFeaturedShows(): Promise<Show[]> {
   await delay()
-  return mockShows.filter((s) => s.isFeatured)
+  return allShows.filter((s) => s.isFeatured)
 }

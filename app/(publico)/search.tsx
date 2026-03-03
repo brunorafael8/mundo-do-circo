@@ -160,7 +160,7 @@ export default function SearchScreen() {
                       {/* Image — fills full card height */}
                       <YStack width={100} position="relative">
                         <Image
-                          source={{ uri: show.imageUrl }}
+                          source={show.imageUrl}
                           style={{ width: 100, height: 104 }}
                           contentFit="cover"
                         />

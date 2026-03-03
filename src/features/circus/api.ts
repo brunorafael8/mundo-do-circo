@@ -1,22 +1,42 @@
-import { mockCircusProfile, mockCircusStats, mockSales } from '../../mocks/circus'
+import {
+  allCircusProfiles,
+  allCircusStats,
+  allCircusSales,
+  estrelaVermelhaProfile,
+  estrelaVermelhaStats,
+  estrelaVermelhaSales,
+} from '../../mocks/circuses'
 import { delay } from '../../mocks/delay'
 import type { CircusProfile, CircusStats, Sale, SalesPeriod } from './types'
 
-export async function fetchCircusProfile(): Promise<CircusProfile> {
+export async function fetchCircusProfile(circusId?: string): Promise<CircusProfile> {
   await delay()
-  return mockCircusProfile
+  if (circusId) {
+    return allCircusProfiles.find((c) => c.id === circusId) ?? estrelaVermelhaProfile
+  }
+  return estrelaVermelhaProfile
 }
 
-export async function fetchCircusStats(): Promise<CircusStats> {
+export async function fetchAllCircuses(): Promise<CircusProfile[]> {
   await delay()
-  return mockCircusStats
+  return allCircusProfiles
 }
 
-export async function fetchSales(period?: SalesPeriod): Promise<Sale[]> {
+export async function fetchCircusStats(circusId?: string): Promise<CircusStats> {
   await delay()
-  // Simple mock filtering by period
+  if (circusId && allCircusStats[circusId]) {
+    return allCircusStats[circusId]
+  }
+  return estrelaVermelhaStats
+}
+
+export async function fetchSales(period?: SalesPeriod, circusId?: string): Promise<Sale[]> {
+  await delay()
+  const sales = circusId && allCircusSales[circusId]
+    ? [...allCircusSales[circusId]]
+    : [...estrelaVermelhaSales]
+
   const now = new Date()
-  const sales = [...mockSales]
 
   if (!period || period === 'all') return sales
 

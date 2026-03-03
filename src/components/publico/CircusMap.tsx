@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { Platform } from 'react-native'
 import { YStack } from 'tamagui'
+import { Image } from 'expo-image'
 import { MapPin } from '@tamagui/lucide-icons'
 import { MCEmptyState } from '../ui/MCEmptyState'
 import type { Show } from '../../features/shows/types'
@@ -206,20 +207,19 @@ function CircusMapWeb({ shows, onShowPress }: CircusMapProps) {
                 alignItems: 'flex-start',
                 gap: 12,
               }}>
-                {/* Emoji badge */}
+                {/* Show image */}
                 <div style={{
-                  width: 52,
-                  height: 52,
+                  width: 64,
+                  height: 64,
                   borderRadius: 14,
-                  background: '#E6394612',
-                  border: '1.5px solid #E6394625',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: 26,
+                  overflow: 'hidden',
                   flexShrink: 0,
                 }}>
-                  {CATEGORY_EMOJI[selectedShow.category] ?? '\u{1F3AA}'}
+                  <Image
+                    source={selectedShow.imageUrl}
+                    style={{ width: 64, height: 64 }}
+                    contentFit="cover"
+                  />
                 </div>
 
                 {/* Info */}

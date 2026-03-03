@@ -216,7 +216,7 @@ const ShowCard = memo(function ShowCard({ show, onPress }: ShowCardProps) {
         {/* Image */}
         <View style={cardStyles.imageWrapper}>
           <Image
-            source={{ uri: show.imageUrl }}
+            source={show.imageUrl}
             style={cardStyles.image}
             contentFit="cover"
           />
